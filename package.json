@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/sulakshana-borsune/teammanager/issues"
   },
-  "homepage": "https://github.com/sulakshana-borsune/teammanager#readme",
+  "homepage": "https://github.com/sulakshana-borsune/teammanager#index.html",
   "dependencies": {
     "chalk": "^3.0.0",
     "inquirer": "^7.0.4",
