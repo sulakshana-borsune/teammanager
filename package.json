@@ -1,0 +1,25 @@
+{
+  "name": "teammanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sulakshana-borsune/teammanager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sulakshana-borsune/teammanager/issues"
+  },
+  "homepage": "https://github.com/sulakshana-borsune/teammanager#readme",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "inquirer": "^7.0.4",
+    "util": "^0.12.1"
+  }
+}
