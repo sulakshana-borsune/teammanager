@@ -124,7 +124,7 @@ function promptCreator() {
                         <div class="card-content white-text">
                           <h3 class="card-title shape">${answers.title}</h3>
                           <div class="shape">${answers.name}</div>
-                          <div class"shape">${answers.id}</div>
+                          <div class="shape">${answers.id}</div>
                         </div>
                       </div>
                     </div>
