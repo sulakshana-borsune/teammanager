@@ -3,65 +3,13 @@ const fs = require('fs')
 const util = require('util')
 var path = require('path')
 const writeFileAsync = util.promisify(fs.writeFile)
+const Employees = require('./employee.js')
+const Manager = require('./manager.js')
+const Engineer = require('./engineer.js')
+const Intern = require('./intern.js')
 
-class Employee {
-    constructor(name, id, title) {
-        this.name = name
-        this.id = id
-        this.title = title
-    }
 
-    getName() {
-        console.log(`Name: ${this.name}`)
-    }
-    getId() {
-        console.log(`Id: ${this.id}`)
-    }
-    getTitle() {
-        console.log(`title: ${this.title}`)
-    }
-}
-//let manager = new Employee('sulu',12,'manager')
-//manager.getName()
-//manager.getId()
-//manager.getTitle()
-
-class Manager extends Employee {
-    constructor(name, id, title, officeNumber) {
-        super(name, id, title)
-        this.officeNumber = officeNumber
-    }
-
-    getRole() {
-        console.log(`Role:${this.title}`)
-    }
-}
-
-class Engineer extends Employee {
-    constructor(name, id, title, github) {
-        super(name, id, title)
-        this.github = github
-    }
-    getGithub() {
-        console.log(`Github id:${github}`)
-    }
-    getRole() {
-        (`Role: ${title}`)
-    }
-}
-
-class Intern extends Employee {
-    constructor(name, id, title, school) {
-        super(name, id, title)
-        this.school = school
-    }
-    getSchool() {
-        console.log(`School:${this.school}`)
-    }
-    getRole() {
-        console.log(`Role:${this.title}`)
-    }
-}
+const employees = []
 
 function promptCreator() {
     return inquirer.prompt([
@@ -107,13 +55,13 @@ function promptCreator() {
                 internCreator()
             }
             else {
-                const Manager1 = new Manager(`${answer.name}`, `${answer.id}`, `${answer.title}`, `${answer.officeNumber}`)  
+                employees.push(new Manager(answer.name, answer.id, answer.title, answer.officeNumber)) 
 
                 path.join('/', '/team.html')
                 fs.writeFile('team.html', JSON.stringify(Manager1), function(error) {
                     if (error) { console.log(error) }
                 })
-                    ()
+                    
             }
 
         })
@@ -128,16 +76,37 @@ promptCreator()
 
 
 function engCreator() {
-    return inquirer.prompt([{
+    return inquirer.prompt([
+        {
+            type: 'text',
+            name: 'name',
+            message: 'Enter your name:'
+        },
+        {
+            type: 'text',
+            name: 'id',
+            message: 'Enter your id:',
+           // validate(input,answer){if(input === answer)
+            //{
+              //  return "Id is already taken enter new number "
+            //}}
+
+        },
+        {
+            type: 'text',
+            name: 'title',
+            message: 'What is your role?'
+        },
+{
         type: 'text',
         name: 'github',
         message: 'Enter your github id:'
     }])
 
         .then(function (answer) {
-            const Engineer1 = new Engineer(`${answer.name}`, `${answer.id}`, `${answer.title}`, `${answer.github}`)
+            employees.push(new Engineer(answer.name, answer.id, answer.title, answer.github))
             path.join('/', '/team.html','/engineer.html')
-            fs.writeFile('engineer.html', JSON.stringify(Engineer1), function (error) {
+            fs.writeFile('engineer.html',(employees), function (error) {
                 if (error) { console.log(error) }
                 else { console.log('Successfully wrote to html') }
 
@@ -156,17 +125,38 @@ function engCreator() {
 }
 
 function internCreator() {
-    return inquirer.prompt([{
+    return inquirer.prompt([
+        {
+            type: 'text',
+            name: 'name',
+            message: 'Enter your name:'
+        },
+        {
+            type: 'text',
+            name: 'id',
+            message: 'Enter your id:',
+           // validate(input,answer){if(input === answer)
+            //{
+              //  return "Id is already taken enter new number "
+            //}}
+
+        },
+        {
+            type: 'text',
+            name: 'title',
+            message: 'What is your role?'
+        },
+
+        {
         type: 'text',
         name: 'github',
         message: 'Enter your school:'
 
     }])
         .then(function (answer) {
-           // const Intern1 = new Intern(`${answer.name}`, `${answer.id}`, `${answer.title}`, `${answer.school}`)
-           const intern = answer
+            employees.push(new Intern(answer.name, answer.id, answer.title, answer.school))
             path.join('/', '/intern.html')
-            fs.writeFile('intern.html', (intern), function(error) {
+            fs.writeFile('./intern.html', answer, function(error) {
                 if (error) { console.log(error) }
             })
 
